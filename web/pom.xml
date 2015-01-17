@@ -12,7 +12,7 @@
     
     <artifactId>Core-web</artifactId>
     <packaging>war</packaging>
-    <name>AppFuse Modular Application - Web (Spring MVC)</name>
+    <name>Legal Records Management System - Web (Spring MVC)</name>
 
     <build>
         <plugins>
@@ -219,6 +219,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--Liquibase for Database Development-->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+        </dependency>
         <!-- Add Bootstrap via WebJars -->
         <dependency>
             <groupId>org.webjars</groupId>
@@ -236,6 +242,10 @@
             <version>1.8.3</version>
         </dependency>
     </dependencies>
+
+    <properties>
+        <liquibase.version>2.0.5</liquibase.version>
+    </properties>
 
     <profiles>
         <profile>
@@ -344,6 +354,54 @@
                 </plugins>
             </build>
         </profile>
+
+        <!--===============Forward Engineer a Database from a hbm or POJO-->
+        <profile>
+            <id>reverse</id>
+            <build>
+                <plugins>
+                <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>${liquibase.version}</version>
+                    <configuration>
+                        <propertyFile>target/classes/db/liquibase-diff.properties</propertyFile>
+                        <changeLogFile>target/classes/db/db.changelog.xml</changeLogFile>
+                        <diffChangeLogFile>src/main/resources/db/db-${timestamp}.changelog.xml</diffChangeLogFile>
+                        <logging>info</logging>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>generate-db-prev</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>update</goal>
+                            </goals>
+                            <configuration>
+                                <dropFirst>true</dropFirst>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>generate-db-diff</id>
+                            <phase>process-test-resources</phase>
+                            <goals>
+                                <goal>diff</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <!-- jdbc driver here -->
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>5.1.31</version>
+                        </dependency>
+                    </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
     <reporting>

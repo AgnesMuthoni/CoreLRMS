@@ -20,27 +20,28 @@
         </license>
     </licenses>
 
-    <scm>
-        <connection>scm:git:ssh://git@bitbucket.org/<username>/<repo>.git</connection>
-        <developerConnection>scm:git:ssh://git@bitbucket.org/<username>/<repo>.git</developerConnection>
-        <url>https://bitbucket.org/<username>/<repo>.git</url>
-    </scm>
+    <!--<scm>-->
+        <!--<connection>scm:git:ssh://git@bitbucket.org/<username>/<repo>.git</connection>-->
+        <!--<developerConnection>scm:git:ssh://git@bitbucket.org/<username>/<repo>.git</developerConnection>-->
+        <!--<url>https://bitbucket.org/<username>/<repo>.git</url>-->
+    <!--</scm>-->
 
-    <issueManagement>
-        <system></system>
-        <url></url>
-    </issueManagement>
+    <!--<issueManagement>-->
+        <!--<system></system>-->
+        <!--<url></url>-->
+    <!--</issueManagement>-->
 
-    <developers>
-        <developer>
-            <id></id>
-            <name></name>
-            <email></email>
-            <timezone></timezone>
-        </developer>
-    </developers>
+    <!--<developers>-->
+        <!--<developer>-->
+            <!--<id></id>-->
+            <!--<name></name>-->
+            <!--<email></email>-->
+            <!--<timezone></timezone>-->
+        <!--</developer>-->
+    <!--</developers>-->
 
     <build>
+        <finalName>lrms</finalName>
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>

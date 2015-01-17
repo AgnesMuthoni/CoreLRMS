@@ -1,0 +1,418 @@
+<databaseChangeLog
+		xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="legal.person-v1.00.01" author="Vetech Org">
+		<createTable tableName="persons">
+			<column name="person_id" type="int(11)" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="date_of_birth" type="dateTime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="gender" type="varchar(128)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="creator" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="date_created" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="changed_by" type="int(11)"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="retired_by" type="int(11)"/>
+			<column name="voided" type="tinyint(1)" defaultValueBoolean="false">
+				<constraints nullable="false"/>
+			</column>
+			<column name="uuid" type="varchar(128)">
+				<constraints unique="true"/>
+			</column>
+		</createTable>
+		<insert tableName="persons">
+			<column name="person_id" value="1"/>
+			<column name="date_of_birth" value="1990-01-01 00:00:00"/>
+			<column name="gender" value="Male"/>
+			<column name="creator" value="1"/>
+			<column name="date_created" value="2014-01-01 00:00:00"/>
+			<!--<column name="voided" value="0"/>-->
+			<column name="uuid" value="e009d52a-72fe-11e4-9a82-1313869ccc4f"/>
+		</insert>
+
+		<createTable tableName="person_address">
+			<column name="person_address_id" type="int(11)" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="person_id" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="address" type="varchar(255)"/>
+			<column name="city_village" type="varchar(255)"/>
+			<column name="state_province" type="varchar(255)"/>
+			<column name="county_district" type="varchar(255)"/>
+			<column name="postal_code" type="varchar(255)"/>
+			<column name="country" type="varchar(255)"/>
+			<column name="creator" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="date_created" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="voided" type="tinyint(1)" defaultValueBoolean="false"/>
+			<column name="retired_by" type="int(11)"/>
+			<column name="date_voided" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="uuid" type="varchar(128)">
+				<constraints unique="true"/>
+			</column>
+		</createTable>
+		<insert tableName="person_address">
+			<column name="person_address_id" value="1"/>
+			<column name="person_id" value="1"/>
+			<column name="creator" value="1"/>
+			<column name="date_created" value="2014-01-01 00:00:00"/>
+			<column name="uuid" value="220e0fb8-72ff-11e4-a4ed-07bfee9dec68"/>
+		</insert>
+		<createTable tableName="person_attribute">
+			<column name="person_attribute_id" type="int(11)" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="person_id" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="national_id" type="varchar(50)"/>
+			<column name="phone_number" type="varchar(50)"/>
+			<column name="person_attribute_type_id" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="creator" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="date_created" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="changed_by" type="int(11)"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="voided" type="tinyint(1)" defaultValueBoolean="false">
+				<constraints nullable="false"/>
+			</column>
+			<column name="retired_by" type="int(11)"/>
+			<column name="uuid" type="varchar(128)">
+				<constraints unique="true"/>
+			</column>
+		</createTable>
+		<insert tableName="person_attribute">
+			<column name="person_attribute_id" value="1"/>
+			<column name="person_id" value="1"/>
+			<column name="person_attribute_type_id" value="1"/>
+			<column name="creator" value="1"/>
+			<column name="date_created" value="2014-01-01 00:00:00"/>
+			<column name="uuid" value="a0943af0-7300-11e4-9ada-774a7a29a488"/>
+		</insert>
+		<createTable tableName="person_name">
+			<column name="person_name_id" type="int(11)" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="person_id" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="prefix" type="varchar(50)"/>
+			<column name="given_name" type="varchar(50)"/>
+			<column name="middle_name" type="varchar(50)"/>
+			<column name="family_name_prefix" type="varchar(50)"/>
+			<column name="family_name" type="varchar(50)"/>
+			<column name="family_name2" type="varchar(50)"/>
+			<column name="family_name_suffix" type="varchar(50)"/>
+			<column name="creator" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="date_created" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="changed_by" type="int(11)"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="retired_by" type="int(11)"/>
+			<column name="uuid" type="varchar(128)">
+				<constraints unique="true"/>
+			</column>
+		</createTable>
+		<insert tableName="person_name">
+			<column name="person_name_id" value="1"/>
+			<column name="person_id" value="1"/>
+			<column name="prefix" value="Mr/Mrs"/>
+			<column name="given_name" value="Super"/>
+			<column name="middle_name" value="User"/>
+			<column name="creator" value="1"/>
+			<column name="date_created" value="2014-01-01 00:00:00"/>
+			<column name="uuid" value="4e37956c-7301-11e4-9804-ef87abe3179d"/>
+		</insert>
+		<addForeignKeyConstraint baseTableName="person_address" baseColumnNames="person_id" constraintName="person_id_fk"
+		                         referencedTableName="persons"
+		                         referencedColumnNames="person_id" onUpdate="CASCADE" onDelete="CASCADE"/>
+		<addForeignKeyConstraint baseTableName="person_attribute" baseColumnNames="person_id"
+		                         constraintName="person_attribute_id_fk" referencedTableName="persons"
+		                         referencedColumnNames="person_id" onDelete="CASCADE" onUpdate="CASCADE"/>
+		<addForeignKeyConstraint baseTableName="person_name" baseColumnNames="person_id" constraintName="person_name_id_fk"
+		                         referencedTableName="persons"
+		                         referencedColumnNames="person_id" onUpdate="CASCADE" onDelete="CASCADE"/>
+	</changeSet>
+
+	<changeSet id="legal.role-v1.00.02" author="Joe Alex Kimani">
+	<comment>Adding clients and records tables</comment>
+	<createTable tableName="case_classes">
+		<column name="case_class_id" type="int(11)" autoIncrement="true">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="class" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="case_code" type="varchar(128)">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="description" type="varchar(255)"/>
+	</createTable>
+
+	<createTable tableName="claims">
+		<column name="claim_id" type="int(11)" autoIncrement="true">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="claim" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="claims_case_code" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="claim_description" type="varchar(255)"/>
+	</createTable>
+
+	<createTable tableName="clients">
+		<column name="client_id" autoIncrement="true" type="int(11)">
+			<constraints primaryKey="true" nullable="false"/>
+		</column>
+		<column name="client_person_id" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="claim_id" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="party_1" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="party_2" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="party_3" type="varchar(128)"/>
+		<column name="date_of_registration" type="DATETIME">
+			<constraints nullable="false"/>
+		</column>
+		<column name="notes" type="varchar(128)"/>
+		<column name="creator" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="date_created" type="datetime">
+			<constraints nullable="false"/>
+		</column>
+		<column name="changed_by" type="int(11)"/>
+		<column name="date_changed" type="datetime"/>
+		<column name="retired" type="tinyint(1)" defaultValueBoolean="false"/>
+		<column name="retired_by" type="int(11)"/>
+		<column name="date_retired" type="datetime"/>
+		<column name="retire_reason" type="varchar(255)"/>
+		<column name="uuid" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+	</createTable>
+
+	<createTable tableName="job_title">
+		<column name="job_title_id" type="int(11)" autoIncrement="true">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="job_title" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="job_description" type="varchar(255)">
+			<constraints nullable="false"/>
+		</column>
+	</createTable>
+
+	<createTable tableName="locations">
+		<column name="location_id" type="int(11)" autoIncrement="true">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="location" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+	</createTable>
+
+	<createTable tableName="employees">
+		<column name="employee_id" type="int(11)" autoIncrement="true">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="person_id" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="job_title_id" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="date_hired" type="DATETIME">
+			<constraints nullable="false"/>
+		</column>
+		<column name="job_location_id" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="creator" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="date_created" type="datetime">
+			<constraints nullable="false"/>
+		</column>
+		<column name="changed_by" type="int(11)"/>
+		<column name="date_changed" type="datetime"/>
+		<column name="retired" type="tinyint(1)" defaultValueBoolean="false"/>
+		<column name="retired_by" type="int(11)"/>
+		<column name="date_retired" type="datetime"/>
+		<column name="retire_reason" type="varchar(255)"/>
+		<column name="uuid" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+	</createTable>
+
+	<createTable tableName="documents">
+		<column name="document_id" type="int(11)" autoIncrement="true">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="document_serial" type="varchar(128)">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="document_case_class_id" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="client_id" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="date_opened" type="datetime">
+			<constraints nullable="false"/>
+		</column>
+		<column name="creator" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="date_created" type="datetime">
+			<constraints nullable="false"/>
+		</column>
+		<column name="changed_by" type="int(11)"/>
+		<column name="date_changed" type="datetime"/>
+		<column name="retired" type="tinyint(1)" defaultValueBoolean="false"/>
+		<column name="retired_by" type="int(11)"/>
+		<column name="date_retired" type="datetime"/>
+		<column name="retire_reason" type="varchar(255)"/>
+		<column name="uuid" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+	</createTable>
+
+	<createTable tableName="document_lending">
+		<column name="document_lend_id" type="int(11)" autoIncrement="true">
+			<constraints nullable="false" primaryKey="true"/>
+		</column>
+		<column name="document_lender_id" type="int(11)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="lending_document_serial" type="varchar(128)">
+			<constraints nullable="false"/>
+		</column>
+		<column name="date_out" type="datetime">
+			<constraints nullable="false"/>
+		</column>
+		<column name="date_in" type="datetime">
+			<constraints nullable="false"/>
+		</column>
+		<column name="returned" type="tinyint(1)" defaultValueBoolean="false">
+			<constraints nullable="false"/>
+		</column>
+	</createTable>
+	</changeSet>
+
+	<changeSet id="legal.role-v1.00.03" author="Vetech Org">
+		<comment>Handle Organization Finance Affairs</comment>
+		<createTable tableName="client_finance">
+			<column name="client_finance_id" type="int(11)" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="client_id" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="case_id" type="int(11)"/>
+			<column name="receipt_code" type="varchar(128)"/>
+			<column name="amount_paid" type="bigInt(11)"/>
+			<column name="date_paid" type="dateTime"/>
+			<column name="paid_to" type="int(11)"/>
+		</createTable>
+
+		<createTable tableName="emp_expenditure">
+			<column name="exp_id" type="int(11)" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="emp_id" type="int(11)"/>
+			<column name="client_id" type="int(11)"/>
+			<column name="date_spent" type="dateTime"/>
+			<column name="amount_out" type="bigInt(11)"/>
+			<column name="exp_receipt_code" type="varchar(255)"/>
+			<column name="amount_used" type="bigInt(11)"/>
+			<column name="received_by" type="int(11)"/>
+		</createTable>
+	</changeSet>
+	
+	<!--<changeSet id="legal.role-v1.00.04" author="Vetech Org">-->
+		<!--<comment>Foreign Keys Creation</comment>-->
+
+		<!--<addForeignKeyConstraint baseTableName="claims" baseColumnNames="claims_case_code" constraintName="ClaimCaseCodeFk" referencedTableName="case_classes"-->
+		                         <!--referencedColumnNames="case_code" onDelete="NO ACTION" onUpdate="CASCADE"/>-->
+		<!--<addForeignKeyConstraint baseTableName="clients" baseColumnNames="client_person_id" constraintName="clientPersonIdFK" referencedTableName="persons"-->
+		                         <!--referencedColumnNames="person_id" onDelete="CASCADE" onUpdate="CASCADE"/>-->
+		<!--<addForeignKeyConstraint baseTableName="clients" baseColumnNames="claim_id" constraintName="clientCaseIdFk" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id" onUpdate="NO ACTION" onDelete="NO ACTION"/>-->
+		<!--<addForeignKeyConstraint baseTableName="clients" baseColumnNames="changed_by" constraintName="clientChangedByFK" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="clients" baseColumnNames="retired_by" constraintName="ClientRetiredByFK" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="client_finance" baseColumnNames="client_id" constraintName="ClientFinanceFK" referencedTableName="clients"-->
+		                         <!--referencedColumnNames="client_id" onUpdate="CASCADE" onDelete="NO ACTION"/>-->
+		<!--<addForeignKeyConstraint baseTableName="client_finance" baseColumnNames="paid_to" constraintName="clientPaidToFK" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="document_lending" baseColumnNames="lending_document_serial" constraintName="documentSerialFK" referencedTableName="dcoument"-->
+		                         <!--referencedColumnNames="document_serial" onUpdate="CASCADE" onDelete="NO ACTION"/>-->
+		<!--<addForeignKeyConstraint baseTableName="document_lending" baseColumnNames="document_lender_id" constraintName="documentLenderFK" referencedTableName="employees"-->
+		                         <!--referencedColumnNames="employee_id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="documents" baseColumnNames="client_id" constraintName="documentClientFK" referencedTableName="clients"-->
+		                         <!--referencedColumnNames="client_id" onDelete="NO ACTION" onUpdate="CASCADE"/>-->
+		<!--<addForeignKeyConstraint baseTableName="documents" baseColumnNames="creator" constraintName="documentCreatorFK" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="documents" baseColumnNames="changed_by" constraintName="documentChangedByFK" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="documents" baseColumnNames="retire_by" constraintName="documentRetiredByFK" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="emp_expenditure" baseColumnNames="emp_id" constraintName="employeeExpenditureFK" referencedTableName="employees"-->
+		                         <!--referencedColumnNames="employee_id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="emp_expenditure" baseColumnNames="client_id" constraintName="clientExpenseFK" referencedTableName="clients"-->
+		                         <!--referencedColumnNames="client_id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="emp_expenditure" baseColumnNames="received_by" constraintName="empExpReceivedByFK" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="epmloyees" baseColumnNames="person_id" constraintName="employeePersonIdFK" referencedTableName="persons"-->
+		                         <!--referencedColumnNames="person_id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="employees" baseColumnNames="job_title_id" constraintName="employeeJobTitleIdFk" referencedTableName="job_title"-->
+		                         <!--referencedColumnNames="job_title_id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="employees" baseColumnNames="job_location_id" constraintName="jobLocationIdFk" referencedTableName="locations"-->
+		                         <!--referencedColumnNames="location_id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="employees" baseColumnNames="creator" constraintName="employeeCreatorFk" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="employees" baseColumnNames="chenged_by" constraintName="employeeModifiedFk" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+		<!--<addForeignKeyConstraint baseTableName="employees" baseColumnNames="retired_by" constraintName="employeeRetiredFk" referencedTableName="app_user"-->
+		                         <!--referencedColumnNames="id"/>-->
+
+	<!--</changeSet>-->
+</databaseChangeLog>
