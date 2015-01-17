@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 17, 2015 8:30:20 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="org.vetech.lrms.core.models.Persons" table="persons" catalog="Core">
+        <id name="personId" type="java.lang.Integer">
+            <column name="person_id" />
+            <generator class="identity" />
+        </id>
+        <property name="dateOfBirth" type="timestamp">
+            <column name="date_of_birth" length="19" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="128" not-null="true" />
+        </property>
+        <property name="creator" type="int">
+            <column name="creator" not-null="true" />
+        </property>
+        <property name="dateCreated" type="timestamp">
+            <column name="date_created" length="19" not-null="true" />
+        </property>
+        <property name="changedBy" type="java.lang.Integer">
+            <column name="changed_by" />
+        </property>
+        <property name="dateChanged" type="timestamp">
+            <column name="date_changed" length="19" />
+        </property>
+        <property name="retiredBy" type="java.lang.Integer">
+            <column name="retired_by" />
+        </property>
+        <property name="voided" type="boolean">
+            <column name="voided" not-null="true" />
+        </property>
+        <property name="uuid" type="string">
+            <column name="uuid" length="128" unique="true" />
+        </property>
+        <set name="personNames" table="person_name" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="person_id" not-null="true" />
+            </key>
+            <one-to-many class="org.vetech.lrms.core.models.PersonName" />
+        </set>
+        <set name="personAddresses" table="person_address" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="person_id" not-null="true" />
+            </key>
+            <one-to-many class="org.vetech.lrms.core.models.PersonAddress" />
+        </set>
+        <set name="personAttributes" table="person_attribute" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="person_id" not-null="true" />
+            </key>
+            <one-to-many class="org.vetech.lrms.core.models.PersonAttribute" />
+        </set>
+        <set name="clientses" table="clients" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="client_person_id" not-null="true" />
+            </key>
+            <one-to-many class="org.vetech.lrms.core.models.Clients" />
+        </set>
+        <set name="clientses_1" table="clients" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="client_person_id" not-null="true" />
+            </key>
+            <one-to-many class="org.vetech.lrms.core.models.Clients" />
+        </set>
+    </class>
+</hibernate-mapping>

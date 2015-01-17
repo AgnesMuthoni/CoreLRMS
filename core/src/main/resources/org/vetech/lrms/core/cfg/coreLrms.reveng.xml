@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="Core"/>
+  <table-filter match-name="employees"/>
+  <table-filter match-name="locations"/>
+  <table-filter match-name="documents"/>
+  <table-filter match-name="app_user"/>
+  <table-filter match-name="emp_expenditure"/>
+  <table-filter match-name="person_address"/>
+  <table-filter match-name="person_attribute"/>
+  <table-filter match-name="client_finance"/>
+  <table-filter match-name="clients"/>
+  <table-filter match-name="role"/>
+  <table-filter match-name="user_role"/>
+  <table-filter match-name="document_lending"/>
+  <table-filter match-name="case_classes"/>
+  <table-filter match-name="job_title"/>
+  <table-filter match-name="person_name"/>
+  <table-filter match-name="persons"/>
+  <table-filter match-name="claims"/>
+</hibernate-reverse-engineering>

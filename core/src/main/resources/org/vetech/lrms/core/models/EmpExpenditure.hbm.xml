@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 17, 2015 8:30:20 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="org.vetech.lrms.core.models.EmpExpenditure" table="emp_expenditure" catalog="Core">
+        <id name="expId" type="java.lang.Integer">
+            <column name="exp_id" />
+            <generator class="identity" />
+        </id>
+        <property name="empId" type="java.lang.Integer">
+            <column name="emp_id" />
+        </property>
+        <property name="clientId" type="java.lang.Integer">
+            <column name="client_id" />
+        </property>
+        <property name="dateSpent" type="timestamp">
+            <column name="date_spent" length="19" />
+        </property>
+        <property name="amountOut" type="java.lang.Long">
+            <column name="amount_out" />
+        </property>
+        <property name="expReceiptCode" type="string">
+            <column name="exp_receipt_code" />
+        </property>
+        <property name="amountUsed" type="java.lang.Long">
+            <column name="amount_used" />
+        </property>
+        <property name="receivedBy" type="java.lang.Integer">
+            <column name="received_by" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 17, 2015 8:30:20 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="org.vetech.lrms.core.models.CaseClasses" table="case_classes" catalog="Core">
+        <composite-id name="id" class="org.vetech.lrms.core.models.CaseClassesId">
+            <key-property name="caseClassId" type="int">
+                <column name="case_class_id" />
+            </key-property>
+            <key-property name="caseCode" type="string">
+                <column name="case_code" length="128" />
+            </key-property>
+        </composite-id>
+        <property name="class_" type="string">
+            <column name="class" length="128" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 17, 2015 8:30:20 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="org.vetech.lrms.core.models.PersonName" table="person_name" catalog="Core">
+        <id name="personNameId" type="java.lang.Integer">
+            <column name="person_name_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="persons" class="org.vetech.lrms.core.models.Persons" fetch="select">
+            <column name="person_id" not-null="true" />
+        </many-to-one>
+        <property name="prefix" type="string">
+            <column name="prefix" length="50" />
+        </property>
+        <property name="givenName" type="string">
+            <column name="given_name" length="50" />
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name" length="50" />
+        </property>
+        <property name="familyNamePrefix" type="string">
+            <column name="family_name_prefix" length="50" />
+        </property>
+        <property name="familyName" type="string">
+            <column name="family_name" length="50" />
+        </property>
+        <property name="familyName2" type="string">
+            <column name="family_name2" length="50" />
+        </property>
+        <property name="familyNameSuffix" type="string">
+            <column name="family_name_suffix" length="50" />
+        </property>
+        <property name="creator" type="int">
+            <column name="creator" not-null="true" />
+        </property>
+        <property name="dateCreated" type="timestamp">
+            <column name="date_created" length="19" not-null="true" />
+        </property>
+        <property name="changedBy" type="java.lang.Integer">
+            <column name="changed_by" />
+        </property>
+        <property name="dateChanged" type="timestamp">
+            <column name="date_changed" length="19" />
+        </property>
+        <property name="retiredBy" type="java.lang.Integer">
+            <column name="retired_by" />
+        </property>
+        <property name="uuid" type="string">
+            <column name="uuid" length="128" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>
