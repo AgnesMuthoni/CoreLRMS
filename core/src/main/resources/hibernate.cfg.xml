@@ -6,6 +6,13 @@
 
 <hibernate-configuration>
     <session-factory>
+        <!--Hibernate DB configuration-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">${jdbc.url}</property>
+        <property name="hibernate.connection.username">${jdbc.username}</property>
+        <property name="hibernate.connection.password">${jdbc.password}</property>
+
         <mapping class="org.appfuse.model.User"/>
         <mapping class="org.appfuse.model.Role"/>
         <mapping resource="org/vetech/lrms/core/models/PersonName.hbm.xml"/>
